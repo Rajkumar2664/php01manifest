@@ -18,14 +18,9 @@ spec:
         image: rajubingi2664/phpapp01:dbimage
         ports:
         - containerPort: 3306
-       
-
-        #secret Integration
         envFrom:
         - secretRef:
             name: bankapp-secret
-
-        #ResurceQuota Integration
         resources:
           requests:
             memory: "128Mi"
@@ -33,23 +28,16 @@ spec:
           limits:
             memory: "256Mi"
             cpu: "200m"
-
         volumeMounts:
         - name: mysql-data
-          mountPath: /var/lib/mysql/ 
-
-
-      volumeClaimTemplates:
-      - metadata:
-          name: mysql-data
-        spec:
-          storageClassName: gp2
-          accessModes:
-            - ReadWriteOnce
-          resources:
-            requests:
-              storage: 2Gi    
-
-
-      
-              
+          mountPath: /var/lib/mysql/
+  volumeClaimTemplates:
+  - metadata:
+      name: mysql-data
+    spec:
+      storageClassName: gp2
+      accessModes:
+        - ReadWriteOnce
+      resources:
+        requests:
+          storage: 2Gi
