@@ -34,7 +34,7 @@ spec:
           kubernetes.io/metadata.name: ingress-nginx
     ports:
     - port: 53
-      protocol: UDP          kubernetes.io/metadata.name: ingress-nginx
+      protocol: UDP
       port:
         - port: 53
         - protocol: UDP
