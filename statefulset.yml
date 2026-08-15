@@ -35,9 +35,20 @@ spec:
             cpu: "200m"
 
         volumeMounts:
-        - name: pvc-1
+        - name: mysql-data
           mountPath: /usr/share/nginx/html/
-      
+
+
+      volumeClaimTemplates:
+      - metadata:
+          name: mysql-data
+        spec:
+          storageClassName: gp2
+          accessModes:
+            - ReadWriteOnce
+          resources:
+            requests:
+              storage: 2Gi    
 
 
       
