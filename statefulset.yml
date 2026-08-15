@@ -1,0 +1,52 @@
+apiVersion: apps/v1
+kind: StatfulSet
+metadata:
+  name: mysql
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app-database    
+  template:
+    metadata:
+      labels:
+        app: app-database
+    spec:
+      containers:
+      - name: dbcont 
+        image: rajubingi2664/phpapp01:dbimage
+        ports:
+        - containerPort: 3306
+       
+
+        #secret Integration
+        envFrom:
+        - secretRef:
+            name: bankapp-secret
+
+        #ResurceQuota Integration
+        resources:
+          requests:
+            memory: "128Mi"
+            cpu: "100m"
+          limits:
+            memory: "256Mi"
+            cpu: "200m"
+
+        volumeMounts:
+        - name: pvc-1
+          mountPath: /var/lib/mysql
+      
+
+
+      volumeClaimTemplates:
+      - metadata:
+          name: pvc-1
+        spec:
+          storageClassName: gp2
+          accessModes:
+            - ReadWriteOnce
+          resources:
+            requests:
+              storage: 2Gi    
+              
