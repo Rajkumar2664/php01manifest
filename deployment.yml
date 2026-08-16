@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: cont1
-        image: rajubingi2664/phpapp01:appimage
+        image: rajubingi2664/php02:appimage
         ports:
         - containerPort: 80
        
