@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: dbcont 
-        image: rajubingi2664/phpapp01:dbimage
+        image: rajubingi2664/php02:dbimage
         ports:
         - containerPort: 3306
         envFrom:
